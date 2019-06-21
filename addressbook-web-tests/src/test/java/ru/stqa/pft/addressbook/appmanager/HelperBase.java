@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
 
 public class HelperBase {
     protected FirefoxDriver wd;
@@ -19,6 +20,12 @@ public class HelperBase {
         click(locator);
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
+    }
+
+    protected void list(By locator, String day) {
+        wd.findElement(locator).click();
+        new Select(wd.findElement(locator)).selectByVisibleText(day);
+        wd.findElement(locator).click();
     }
 
     public boolean isAlertPresent() {
